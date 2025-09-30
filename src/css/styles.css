@@ -7,12 +7,121 @@
 /* Common styles */
 @import url('./reset.css');
 @import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px 0;
+}
+
+main {
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 600px;
+  padding: 60px 40px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ФОРМА */
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.form input[type='text'] {
+  width: 240px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.form input[type='text']:hover {
+  border-color: #000;
+}
+
+.form input[type='text']:focus {
+  border-color: #2f80ed;
+}
+
+.form button {
+  background-color: #4c6ef5;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.form button:hover {
+  background-color: #688afc;
+}
+
+/* LOADER */
+.loader {
+  margin-top: 24px;
+  color: #333;
+  font-size: 14px;
+  display: none;
+}
+
+.loader.is-loading {
+  display: block;
+}
+
+/* ГАЛЕРЕЯ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+/* iziToast */
+.iziToast.iziToast-theme-light.iziToast-color-red {
+  background: #eb5757 !important;
+  border-radius: 6px !important;
+  font-size: 14px;
+}
+
+.iziToast-message {
+  color: #fff !important;
+}
+
+/* АДАПТИВ */
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
