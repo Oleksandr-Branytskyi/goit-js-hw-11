@@ -1,20 +1,18 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const galleryContainer = document.getElementById('gallery');
-const loaderEl = document.getElementById('loader');
+const galleryContainer = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
 
-const lightbox = new SimpleLightbox('.gallery a', {
+let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
 
 export function createGallery(images) {
-  if (!Array.isArray(images) || images.length === 0) return;
-
   const markup = images
-    .map(image => {
-      const {
+    .map(
+      ({
         webformatURL,
         largeImageURL,
         tags,
@@ -22,25 +20,22 @@ export function createGallery(images) {
         views,
         comments,
         downloads,
-      } = image;
-      return `
-        <a class="photo-card-link" href="${largeImageURL}">
-          <div class="photo-card">
-            <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-            <div class="info">
-              <p><b>Likes</b><br>${likes}</p>
-              <p><b>Views</b><br>${views}</p>
-              <p><b>Comments</b><br>${comments}</p>
-              <p><b>Downloads</b><br>${downloads}</p>
-            </div>
-          </div>
+      }) => `
+      <li class="gallery-item">
+        <a href="${largeImageURL}">
+          <img src="${webformatURL}" alt="${tags}" loading="lazy" />
         </a>
-      `;
-    })
+        <div class="image-info">
+          <p>👍 ${likes}</p>
+          <p>👁️ ${views}</p>
+          <p>💬 ${comments}</p>
+          <p>⬇️ ${downloads}</p>
+        </div>
+      </li>`
+    )
     .join('');
 
   galleryContainer.insertAdjacentHTML('beforeend', markup);
-
   lightbox.refresh();
 }
 
@@ -49,11 +44,9 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  if (!loaderEl) return;
-  loaderEl.classList.add('is-loading');
+  loader.classList.add('is-loading');
 }
 
 export function hideLoader() {
-  if (!loaderEl) return;
-  loaderEl.classList.remove('is-loading');
+  loader.classList.remove('is-loading');
 }
